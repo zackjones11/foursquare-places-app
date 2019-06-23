@@ -12,6 +12,6 @@ it('renders without crashing', () => {
     const fetchVenues = jest.fn()
     const venues = []
 
-    ReactDOM.render(<App fetchVenues={fetchVenues} venues={venues}/>, div)
+    ReactDOM.render(<App fetchVenues={fetchVenues} venues={venues} />, div)
     ReactDOM.unmountComponentAtNode(div)
 })

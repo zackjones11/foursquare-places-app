@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import MapContainer from './components/map/map-container'
+
 import * as foursquare from './redux/foursquare-redux'
 
 import './app.css'
@@ -14,10 +16,11 @@ class App extends Component {
     render() {
         return (
             <div className="foursquare-places-app">
-                <p>app</p> 
-                {this.props.venues.map((venue) => (
-                    <p>{venue.venue.name}</p>
-                ))}    
+                <div className="foursquare-places-app__map-wrapper">
+                    <MapContainer
+                        venueLocation={{lat: '51.507351', long: '-0.127758'}}
+                        usersLocation={{lat: '51.507351', long: '-0.127758'}} />
+                </div>  
             </div>  
         )
     }
