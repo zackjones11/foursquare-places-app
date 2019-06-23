@@ -60,7 +60,9 @@ const venues = (state = INITIAL_STATE.venues, action = {}) => {
 
             return venues
 
+        case FETCH_VENUES_REQUEST:
         case FETCH_VENUES_FAILURE:
+            return []
 
         default:
             return state
@@ -69,10 +71,6 @@ const venues = (state = INITIAL_STATE.venues, action = {}) => {
 
 const error = (state = INITIAL_STATE.error, action = {}) => {
     switch (action.type) {
-        case FETCH_VENUES_SUCCESS: {
-            return null
-        }
-
         case FETCH_VENUES_FAILURE: {
             const responseError = action.error || {}
             const errorData = responseError.data || responseError
@@ -80,6 +78,11 @@ const error = (state = INITIAL_STATE.error, action = {}) => {
             return errorData
         }
 
+        case FETCH_VENUES_REQUEST:
+        case FETCH_VENUES_SUCCESS:
+            return null
+
+                    
         default:
             return state
     }
