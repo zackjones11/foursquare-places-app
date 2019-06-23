@@ -7,3 +7,16 @@ configure({ adapter: new Adapter() })
 global.shallow = shallow
 global.render = render
 global.mount = mount
+
+// Mock navigator getCurrentPosition
+const mockGeolocation = {
+    getCurrentPosition: jest.fn()
+        .mockImplementationOnce((success) => Promise.resolve(success({
+            coords: {
+                latitude: '111',
+                longitude: '222'
+            }
+        })))
+}
+
+global.navigator.geolocation = mockGeolocation

@@ -131,7 +131,7 @@ describe('foursquare redux', () => {
                 expect(venues).toEqual([{ name: 'place name' }])
             })
 
-            it(`${redux.FETCH_VENUES_FAILURE} action type should set venues to []`, () => {
+            it(`${redux.FETCH_VENUES_FAILURE} action type should set venues to empty array`, () => {
                 const state = { ...INITIAL_STATE, venues: true }
                 const { venues } = reducer(state, {
                     type: redux.FETCH_VENUES_FAILURE,

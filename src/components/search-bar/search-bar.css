@@ -1,0 +1,45 @@
+.c-search-bar {
+    position: relative;
+    margin-top: 30px;
+}
+
+.c-search-bar__input {
+    height: 45px;
+    width: 100%;
+    border: none;
+    padding-left: 15px;
+    padding-right: 59px;
+}
+
+.c-search-bar__input:focus, .c-search-bar__input:active {
+    outline: 0;
+}
+
+.c-search-bar__submit {
+    border: none;
+    background: transparent;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    font-size: 13px;
+    position: absolute;
+    color: #6c3072;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    margin: 0 auto;
+    padding-right: 15px;
+    border-left: 1px solid #f1f1f1;
+    padding-left: 15px;
+    transition: background-color 0.3s ease-in;
+    cursor: pointer;
+}
+
+.c-search-bar__submit:hover {
+    background-color: #f3f3f333;
+}
+
+.c-search-bar__submit:focus, .c-search-bar__submit:active {
+    outline: 0;
+}
