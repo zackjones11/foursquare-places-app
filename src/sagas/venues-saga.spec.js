@@ -32,16 +32,18 @@ describe('fetchVenues saga', () => {
     })
 
     it(`should dispatch ${redux.FETCH_VENUES_SUCCESS} when successful`, () => {
-        saga.next().put({ type: redux.FETCH_VENUES_REQUEST })
+        saga.next().put({ type: redux.FETCH_VENUES_REQUEST, payload: { incrementPageNum: false } })
         saga.next().call(services.fetchVenues, data)
-        saga.next(response).put({ type: redux.FETCH_VENUES_SUCCESS, payload: response.data.response.groups })
+        saga.next(response).put({ type: redux.FETCH_VENUES_SUCCESS, payload: {
+            venues: response.data.response.groups, incrementPageNum: false
+        } })
         saga.next().isDone()
     })
 
     it(`should dispatch ${redux.FETCH_VENUES_FAILURE} when failed`, () => {
         const error = 'some-error'
 
-        saga.next().put({ type: redux.FETCH_VENUES_REQUEST })
+        saga.next().put({ type: redux.FETCH_VENUES_REQUEST, payload: { incrementPageNum: false } })
         saga.next().call(services.fetchVenues, data)
         saga.next({ error }).put({ type: redux.FETCH_VENUES_FAILURE, error })
         saga.next().isDone()

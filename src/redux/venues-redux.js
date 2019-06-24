@@ -5,6 +5,8 @@ export const FETCH_VENUES_REQUEST = 'FETCH_VENUES_REQUEST'
 export const FETCH_VENUES_SUCCESS = 'FETCH_VENUES_SUCCESS'
 export const FETCH_VENUES_FAILURE = 'FETCH_VENUES_FAILURE'
 
+export const SEARCH_BUTTON_CLICKED = 'SEARCH_BUTTON_CLICKED'
+
 export const SELECT_VENUE = 'SELECT_VENUE'
 
 export const SHOW_VENUE_LIST = 'SHOW_VENUE_LIST'
@@ -13,6 +15,8 @@ export const INITIAL_STATE = {
     isFetchingVenues: false,
     hasFetchedVenues: null,
     venues: [],
+    pageNum: 1,
+    searchQuery: '',
     showingVenueList: false,
     selectedVenue: {
         location: {
@@ -27,6 +31,8 @@ export const INITIAL_STATE = {
  * Action Creators
  */
 export const fetchVenues = (payload) => ({ type: FETCH_VENUES, payload: payload })
+
+export const searchButtonClicked = (payload) => ({ type: SEARCH_BUTTON_CLICKED, payload: payload })
 
 export const selectVenue = (payload) => ({ type: SELECT_VENUE, payload: payload })
 
@@ -77,15 +83,19 @@ const showingVenueList = (state = INITIAL_STATE.showingVenueList, action = {}) =
 
 const venues = (state = INITIAL_STATE.venues, action = {}) => {
     switch (action.type) {
-        case FETCH_VENUES_SUCCESS:
-            const recommended = action.payload.filter((group) =>
+        case FETCH_VENUES_SUCCESS: {
+            const recommended = action.payload.venues.filter((group) =>
                 group.name === 'recommended')
         
             const venues = recommended[0].items
 
-            return venues
-
-        case FETCH_VENUES_REQUEST:
+            if (action.payload.incrementPageNum)
+                return [ ...state, ...venues ]
+            else
+                return venues
+        }
+        
+        case SEARCH_BUTTON_CLICKED:
         case FETCH_VENUES_FAILURE:
             return []
 
@@ -94,15 +104,44 @@ const venues = (state = INITIAL_STATE.venues, action = {}) => {
     }
 } 
 
+const pageNum = (state = INITIAL_STATE.pageNum, action = {}) => {
+    switch (action.type) {
+        case SEARCH_BUTTON_CLICKED:
+            return 1
+
+        case FETCH_VENUES_SUCCESS: {
+            if (action.payload.incrementPageNum) {
+                return state + 1
+            } else {
+                return state
+            }
+        }
+        
+        default:
+            return state
+    }
+}
+
 const selectedVenue = (state = INITIAL_STATE.selectedVenue, action = {}) => {
     switch (action.type) {
-        case SELECT_VENUE:
+        case SELECT_VENUE: {
             return {
                 location: {
                     lat: action.payload.venue.location.lat,
                     long: action.payload.venue.location.lng
                 }
             }
+        }
+
+        default:
+            return state
+    }
+}
+
+const searchQuery = (state = INITIAL_STATE.searchQuery, action = {}) => {
+    switch (action.type) {
+        case SEARCH_BUTTON_CLICKED:
+            return action.payload.query
 
         default:
             return state
@@ -122,7 +161,6 @@ const error = (state = INITIAL_STATE.error, action = {}) => {
         case FETCH_VENUES_SUCCESS:
             return null
 
-                    
         default:
             return state
     }
@@ -133,6 +171,8 @@ export default combineReducers({
     hasFetchedVenues,
     showingVenueList,
     venues,
+    searchQuery,
+    pageNum,
     selectedVenue,
     error
 })

@@ -15,6 +15,7 @@ class SearchBar extends React.Component {
         event.preventDefault()
         
         const query = this.state.query
+        this.props.searchButtonClicked({query})
         this.props.fetchVenues({...this.props.usersLocation, query})
         this.props.showVenuesList(true)
     }
@@ -56,6 +57,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     fetchVenues: venue.fetchVenues,
+    searchButtonClicked: venue.searchButtonClicked,
     showVenuesList: venue.showVenuesList
 }
 

@@ -4,7 +4,9 @@ import * as redux from '../redux/venues-redux'
 import * as services from '../services'
 
 export function* fetchVenues({ payload }) {
-    yield sagaFx.put({ type: redux.FETCH_VENUES_REQUEST })
+    yield sagaFx.put({ type: redux.FETCH_VENUES_REQUEST, payload: {
+        incrementPageNum: payload.incrementPageNum ? payload.incrementPageNum : false
+    }})
     
     const { data, error } = yield sagaFx.call(services.fetchVenues, payload)
     
@@ -13,6 +15,10 @@ export function* fetchVenues({ payload }) {
     }
 
     if (data.response) {
-        return yield sagaFx.put({ type: redux.FETCH_VENUES_SUCCESS, payload: data.response.groups })
+        const p = {
+            venues: data.response.groups, 
+            incrementPageNum: payload.incrementPageNum ? payload.incrementPageNum : false
+        }
+        return yield sagaFx.put({ type: redux.FETCH_VENUES_SUCCESS, payload: p })
     }
 }
