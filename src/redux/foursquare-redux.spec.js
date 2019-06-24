@@ -171,6 +171,28 @@ describe('foursquare redux', () => {
             })
         })
 
+        describe('showingVenueList', () => {
+            it('should handle initial state', () => {
+                const { showingVenueList } = reducer(undefined, undefined)
+                expect(showingVenueList).toEqual(INITIAL_STATE.showingVenueList)
+            })
+
+            it('should handle unknown action types', () => {
+                const { showingVenueList } = reducer(INITIAL_STATE, { type: 'UNKNOWN' })
+                expect(showingVenueList).toEqual(INITIAL_STATE.showingVenueList)
+            })
+
+            it(`${redux.SHOW_VENUE_LIST} action type should set payload`, () => {
+                const state = { ...INITIAL_STATE, showingVenueList: false }
+                const { showingVenueList } = reducer(state, {
+                    type: redux.SHOW_VENUE_LIST,
+                    payload: true
+                })
+
+                expect(showingVenueList).toEqual(true)
+            })
+        })
+
         describe('error', () => {
             it('should handle initial state', () => {
                 const { error } = reducer(undefined, undefined)
@@ -233,6 +255,15 @@ describe('foursquare redux', () => {
                 expect(redux.selectVenue('some-payload')).toEqual({
                     type: redux.SELECT_VENUE,
                     payload: 'some-payload'
+                })
+            })
+        })
+
+        describe('showVenuesList', () => {
+            it(`should return action type ${redux.SHOW_VENUE_LIST} with payload`, () => {
+                expect(redux.showVenuesList(true)).toEqual({
+                    type: redux.SHOW_VENUE_LIST,
+                    payload: true
                 })
             })
         })

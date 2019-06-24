@@ -18,6 +18,7 @@ class VenueList extends Component {
         const venue = this.props.venues.filter((v) => v.venue.id === clickedId)
 
         this.props.selectVenue({...venue[0]})
+        this.props.showVenuesList(false)
     }
 
     render() {
@@ -56,7 +57,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    selectVenue: foursquare.selectVenue
+    selectVenue: foursquare.selectVenue,
+    showVenuesList: foursquare.showVenuesList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VenueList)

@@ -27,15 +27,16 @@ class App extends Component {
 
                 <div className="foursquare-places-app__sidebar">
                     <SearchBar />
-                    <VenueList />
+                    {this.props.showingVenueList && <VenueList />}
                 </div>
-            </div>  
+            </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
     venues: state.foursquare.venues,
+    showingVenueList: state.foursquare.showingVenueList
 })
 
 const mapDispatchToProps = {

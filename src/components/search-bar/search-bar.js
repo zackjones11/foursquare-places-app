@@ -16,6 +16,7 @@ class SearchBar extends React.Component {
         
         const query = this.state.query
         this.props.fetchVenues({...this.props.usersLocation, query})
+        this.props.showVenuesList(true)
     }
 
     onChange = (event) => {
@@ -55,6 +56,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     fetchVenues: foursquare.fetchVenues,
+    showVenuesList: foursquare.showVenuesList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
