@@ -8,7 +8,19 @@ import './search-bar.css'
 class SearchBar extends React.Component {
     constructor(props) {
         super(props)
-        this.props.fetchVenues({lat: '51.507351', long: '-0.127758'})
+        this.state = { query: '' }
+    }
+
+    onSearch = (event) => {
+        event.preventDefault()
+        
+        const query = this.state.query
+        this.props.fetchVenues({...this.props.usersLocation, query})
+    }
+
+    onChange = (event) => {
+        const value = event.target.value
+        this.setState({ query: value })
     }
 
     render() {
@@ -20,9 +32,10 @@ class SearchBar extends React.Component {
     
         return (
             <div className="c-search-bar">
-                <form onSubmit={() => {}} className="c-search-bar__form">
-                    <input onChange={() => {}}
-                        placeholder={placeholder}
+                <form onSubmit={this.onSearch} className="c-search-bar__form">
+                    <input 
+                        onChange={this.onChange} 
+                        placeholder={placeholder} 
                         className="c-search-bar__input g-dropshadow-box" />
     
                     {this.props.hasUsersLocation ? (
@@ -36,6 +49,7 @@ class SearchBar extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    usersLocation: state.geolocation.usersLocation,
     hasUsersLocation: Boolean(state.geolocation.usersLocation.lat)
 })
 

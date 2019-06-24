@@ -24,7 +24,7 @@ class App extends Component {
                 <div className="foursquare-places-app__map-wrapper">
                     <MapContainer
                         venueLocation={{lat: '51.507351', long: '-0.127758'}}
-                        usersLocation={{lat: '51.507351', long: '-0.127758'}} />
+                        usersLocation={this.props.usersLocation} />
                 </div>
 
                 <div className="foursquare-places-app__sidebar">
@@ -38,6 +38,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
     venues: state.foursquare.venues,
+    usersLocation: state.geolocation.usersLocation
 })
 
 const mapDispatchToProps = {
