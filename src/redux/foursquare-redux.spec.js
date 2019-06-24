@@ -142,6 +142,35 @@ describe('foursquare redux', () => {
             })
         })
 
+        describe('selectedVenue', () => {
+            it('should handle initial state', () => {
+                const { selectedVenue } = reducer(undefined, undefined)
+                expect(selectedVenue).toEqual(INITIAL_STATE.selectedVenue)
+            })
+
+            it('should handle unknown action types', () => {
+                const { selectedVenue } = reducer(INITIAL_STATE, { type: 'UNKNOWN' })
+                expect(selectedVenue).toEqual(INITIAL_STATE.selectedVenue)
+            })
+
+            it(`${redux.SELECT_VENUE} action type should set payload`, () => {
+                const state = { ...INITIAL_STATE, selectedVenue: {location: {lat: '', long: ''}} }
+                const { selectedVenue } = reducer(state, {
+                    type: redux.SELECT_VENUE,
+                    payload: {
+                        venue: {
+                            location: {
+                                lat: '111',
+                                lng: '222'
+                            }
+                        }
+                    }
+                })
+
+                expect(selectedVenue).toEqual({location: {lat: '111', long: '222'}})
+            })
+        })
+
         describe('error', () => {
             it('should handle initial state', () => {
                 const { error } = reducer(undefined, undefined)
@@ -194,6 +223,15 @@ describe('foursquare redux', () => {
             it(`should return action type ${redux.FETCH_VENUES} with payload`, () => {
                 expect(redux.fetchVenues('some-payload')).toEqual({
                     type: redux.FETCH_VENUES,
+                    payload: 'some-payload'
+                })
+            })
+        })
+
+        describe('selectVenue', () => {
+            it(`should return action type ${redux.SELECT_VENUE} with payload`, () => {
+                expect(redux.selectVenue('some-payload')).toEqual({
+                    type: redux.SELECT_VENUE,
                     payload: 'some-payload'
                 })
             })

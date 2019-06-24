@@ -2,11 +2,11 @@ import React from 'react'
 
 import './venue-list-item.css'
 
-const VenueListItem = ({venue}) => {
+const VenueListItem = ({venue, onClick}) => {
     const address = venue.location.formattedAddress.join(', ')
 
     return (
-        <li className="c-venue-list-item">
+        <li data-id={venue.id} className="c-venue-list-item" onClick={onClick}>
             <div className="c-venue-list-item__name">
                 {venue.name}
             </div>

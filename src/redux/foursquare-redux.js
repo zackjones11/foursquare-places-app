@@ -5,10 +5,18 @@ export const FETCH_VENUES_REQUEST = 'FETCH_VENUES_REQUEST'
 export const FETCH_VENUES_SUCCESS = 'FETCH_VENUES_SUCCESS'
 export const FETCH_VENUES_FAILURE = 'FETCH_VENUES_FAILURE'
 
+export const SELECT_VENUE = 'SELECT_VENUE'
+
 export const INITIAL_STATE = {
     isFetchingVenues: false,
     hasFetchedVenues: null,
     venues: [],
+    selectedVenue: {
+        location: {
+            lat: '',
+            lng: ''
+        }
+    },
     error: null,
 }
 
@@ -16,6 +24,8 @@ export const INITIAL_STATE = {
  * Action Creators
  */
 export const fetchVenues = (payload) => ({ type: FETCH_VENUES, payload: payload })
+
+export const selectVenue = (payload) => ({ type: SELECT_VENUE, payload: payload })
 
 /**
  * Reducers
@@ -69,6 +79,21 @@ const venues = (state = INITIAL_STATE.venues, action = {}) => {
     }
 } 
 
+const selectedVenue = (state = INITIAL_STATE.selectedVenue, action = {}) => {
+    switch (action.type) {
+        case SELECT_VENUE:
+            return {
+                location: {
+                    lat: action.payload.venue.location.lat,
+                    long: action.payload.venue.location.lng
+                }
+            }
+
+        default:
+            return state
+    }
+}
+
 const error = (state = INITIAL_STATE.error, action = {}) => {
     switch (action.type) {
         case FETCH_VENUES_FAILURE: {
@@ -92,5 +117,6 @@ export default combineReducers({
     isFetchingVenues,
     hasFetchedVenues,
     venues,
+    selectedVenue,
     error
 })
