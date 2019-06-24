@@ -6,7 +6,7 @@ import {
     FOURSQUARE_CLIENT_SECRET,
     API_VERSION_NUMBER,
     PAGINATION_LIMIT
-} from '../../constants/foursquare-api'
+} from '../constants/foursquare-api'
 
 export const fetchVenues = async ({ lat, long, paginationOffset = 0, query = '' }) => {
     try {
