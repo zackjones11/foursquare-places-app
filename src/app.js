@@ -5,7 +5,6 @@ import SearchBar from './components/search-bar/search-bar'
 import MapContainer from './components/map/map-container'
 import VenueList from './components/venue-list/venue-list'
 
-import * as foursquare from './redux/foursquare-redux'
 import * as geolocation from './redux/geolocation-redux'
 
 import './app.css'
@@ -16,7 +15,6 @@ class App extends Component {
     }
     
     componentWillMount() {
-        this.props.fetchVenues({lat: '51.507351', long: '-0.127758'})
         this.props.fetchGeoLocation()
     }
 
@@ -26,14 +24,11 @@ class App extends Component {
                 <div className="foursquare-places-app__map-wrapper">
                     <MapContainer
                         venueLocation={{lat: '51.507351', long: '-0.127758'}}
-                        usersLocation={{lat: '51.507351', long: '-0.127758'}} />
+                        ={{lat: '51.507351', long: '-0.127758'}} />
                 </div>
 
                 <div className="foursquare-places-app__sidebar">
-                    <SearchBar
-                        hasUsersLocation={this.props.hasUsersLocation}
-                        onChange={(event) => {}}
-                        onSubmit={(event) => {}} />
+                    <SearchBar />
 
                         <VenueList />
                 </div>
@@ -44,12 +39,9 @@ class App extends Component {
 
 const mapStateToProps = state => ({
     venues: state.foursquare.venues,
-    usersLocation: state.geolocation.usersLocation,
-    hasUsersLocation: Boolean(state.geolocation.usersLocation.lat)
 })
 
 const mapDispatchToProps = {
-    fetchVenues: foursquare.fetchVenues,
     fetchGeoLocation: geolocation.fetchGeoLocation
 }
 

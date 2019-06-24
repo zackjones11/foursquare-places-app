@@ -1,28 +1,46 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import * as foursquare from '../../redux/foursquare-redux'
 
 import './search-bar.css'
 
-const SearchBar = ({onSubmit, onChange, hasUsersLocation}) => {
-    let placeholder = 'Getting location...'
-    
-    if (hasUsersLocation) {
-        placeholder = 'What kind of venue?'
+class SearchBar extends React.Component {
+    constructor(props) {
+        super(props)
+        this.props.fetchVenues({lat: '51.507351', long: '-0.127758'})
     }
 
-    return (
-        <div className="c-search-bar">
-            <form onSubmit={onSubmit} className="c-search-bar__form">
-                <input onChange={onChange}
-                    placeholder={placeholder}
-                    className="c-search-bar__input g-dropshadow-box" />
-
-                {hasUsersLocation ? (
-                    <button type="submit"
-                        className="c-search-bar__submit">Go</button>
-                ) : null}
-            </form>
-        </div>
-    )
+    render() {
+        let placeholder = 'Getting location...'
+    
+        if (this.props.hasUsersLocation) {
+            placeholder = 'What kind of venue?'
+        }
+    
+        return (
+            <div className="c-search-bar">
+                <form onSubmit={() => {}} className="c-search-bar__form">
+                    <input onChange={() => {}}
+                        placeholder={placeholder}
+                        className="c-search-bar__input g-dropshadow-box" />
+    
+                    {this.props.hasUsersLocation ? (
+                        <button type="submit"
+                            className="c-search-bar__submit">Go</button>
+                    ) : null}
+                </form>
+            </div>
+        )
+    }
 }
 
-export default SearchBar
+const mapStateToProps = state => ({
+    hasUsersLocation: Boolean(state.geolocation.usersLocation.lat)
+})
+
+const mapDispatchToProps = {
+    fetchVenues: foursquare.fetchVenues,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
