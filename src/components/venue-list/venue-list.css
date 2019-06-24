@@ -1,0 +1,38 @@
+.c-venue-list {
+    background: white;
+    margin-top: 15px;
+    margin-bottom: 50px;
+}
+
+@media screen and (min-width: 480px) {
+    .c-venue-list {
+        max-height: 480px;
+        overflow: auto;
+    }
+}
+
+.c-venue-list__ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (max-width: 800px) {
+    .c-venue-list__ul--hide {
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+.c-venue-list__message {
+    font-weight: 800;
+    text-align: center;
+    color: #5a5a5a;
+    padding: 15px;
+}
+
+@media screen and (min-width: 480px) {
+    .c-venue-list__message {
+        padding: 0;
+    }
+}

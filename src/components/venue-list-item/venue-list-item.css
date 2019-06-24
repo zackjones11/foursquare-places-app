@@ -1,0 +1,24 @@
+.c-venue-list-item {
+    padding: 15px;
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+}
+
+.c-venue-list-item:last-child {
+    border-bottom: 0;
+}
+
+.c-venue-list-item:hover {
+    background-color: #f3f3f333;
+}
+
+.c-venue-list-item__name {
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.c-venue-list-item__address {
+    color: #8c8c8c;
+    font-size: 13px;
+    line-height: 1.6;
+}

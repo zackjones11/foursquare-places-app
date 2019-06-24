@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import SearchBar from './components/search-bar/search-bar'
 import MapContainer from './components/map/map-container'
+import VenueList from './components/venue-list/venue-list'
 
 import * as foursquare from './redux/foursquare-redux'
 import * as geolocation from './redux/geolocation-redux'
@@ -15,6 +16,7 @@ class App extends Component {
     }
     
     componentWillMount() {
+        this.props.fetchVenues({lat: '51.507351', long: '-0.127758'})
         this.props.fetchGeoLocation()
     }
 
@@ -32,6 +34,8 @@ class App extends Component {
                         hasUsersLocation={this.props.hasUsersLocation}
                         onChange={(event) => {}}
                         onSubmit={(event) => {}} />
+
+                        <VenueList />
                 </div>
             </div>  
         )
