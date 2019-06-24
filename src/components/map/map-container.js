@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 
 import { GOOGLE_MAPS_API_KEY } from '../../constants/google-maps-api'
@@ -49,4 +50,9 @@ class MapContainer extends PureComponent {
     }
 }
 
-export default GoogleApiWrapper({ apiKey: GOOGLE_MAPS_API_KEY })(MapContainer)
+const mapStateToProps = state => ({
+    usersLocation: state.geolocation.usersLocation,
+    venueLocation: {lat: '51.507351', long: '-0.127758'}
+})
+
+export default connect(mapStateToProps)(GoogleApiWrapper({ apiKey: GOOGLE_MAPS_API_KEY })(MapContainer))
