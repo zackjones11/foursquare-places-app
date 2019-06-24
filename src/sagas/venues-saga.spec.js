@@ -1,8 +1,8 @@
 import { testSaga } from 'redux-saga-test-plan'
 
-import { fetchVenues } from './foursquare-saga'
+import { fetchVenues } from './venues-saga'
 import * as services from '../services'
-import * as redux from '../redux/foursquare-redux'
+import * as redux from '../redux/venues-redux'
 
 describe('fetchVenues saga', () => {
     let saga

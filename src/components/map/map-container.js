@@ -52,7 +52,7 @@ class MapContainer extends PureComponent {
 
 const mapStateToProps = state => ({
     usersLocation: state.geolocation.usersLocation,
-    venueLocation: state.foursquare.selectedVenue.location
+    venueLocation: state.venues.selectedVenue.location
 })
 
 export default connect(mapStateToProps)(GoogleApiWrapper({ apiKey: GOOGLE_MAPS_API_KEY })(MapContainer))

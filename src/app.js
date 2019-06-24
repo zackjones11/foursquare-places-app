@@ -35,8 +35,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-    venues: state.foursquare.venues,
-    showingVenueList: state.foursquare.showingVenueList
+    venues: state.venues.venues,
+    showingVenueList: state.venues.showingVenueList
 })
 
 const mapDispatchToProps = {

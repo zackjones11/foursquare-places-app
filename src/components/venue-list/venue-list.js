@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import * as foursquare from '../../redux/foursquare-redux'
+import * as venues from '../../redux/venues-redux'
 
 import VenueListItem from '../venue-list-item/venue-list-item'
 
@@ -52,13 +52,13 @@ class VenueList extends Component {
 }
 
 const mapStateToProps = state => ({
-    venues: state.foursquare.venues,
-    isFetching: state.foursquare.isFetchingVenues
+    venues: state.venues.venues,
+    isFetching: state.venues.isFetchingVenues
 })
 
 const mapDispatchToProps = {
-    selectVenue: foursquare.selectVenue,
-    showVenuesList: foursquare.showVenuesList
+    selectVenue: venues.selectVenue,
+    showVenuesList: venues.showVenuesList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VenueList)

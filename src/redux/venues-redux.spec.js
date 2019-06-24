@@ -1,8 +1,8 @@
-import reducer, * as redux from './foursquare-redux'
+import reducer, * as redux from './venues-redux'
 
 const { INITIAL_STATE } = redux
 
-describe('foursquare redux', () => {
+describe('venues redux', () => {
     describe('reducers', () => {
         describe('isFetchingVenues', () => {
             it('should handle initial state', () => {

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import foursquare from './redux/foursquare-redux'
+import venues from './redux/venues-redux'
 import geolocation from './redux/geolocation-redux'
 
 export default combineReducers({
-    foursquare,
+    venues,
     geolocation
 })

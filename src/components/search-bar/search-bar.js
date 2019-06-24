@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import * as foursquare from '../../redux/foursquare-redux'
+import * as venue from '../../redux/venues-redux'
 
 import './search-bar.css'
 
@@ -55,8 +55,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    fetchVenues: foursquare.fetchVenues,
-    showVenuesList: foursquare.showVenuesList
+    fetchVenues: venue.fetchVenues,
+    showVenuesList: venue.showVenuesList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

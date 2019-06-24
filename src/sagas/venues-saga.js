@@ -1,6 +1,6 @@
 import * as sagaFx from 'redux-saga/effects'
 
-import * as redux from '../redux/foursquare-redux'
+import * as redux from '../redux/venues-redux'
 import * as services from '../services'
 
 export function* fetchVenues({ payload }) {
