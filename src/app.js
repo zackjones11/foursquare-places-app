@@ -24,13 +24,12 @@ class App extends Component {
                 <div className="foursquare-places-app__map-wrapper">
                     <MapContainer
                         venueLocation={{lat: '51.507351', long: '-0.127758'}}
-                        ={{lat: '51.507351', long: '-0.127758'}} />
+                        usersLocation={{lat: '51.507351', long: '-0.127758'}} />
                 </div>
 
                 <div className="foursquare-places-app__sidebar">
                     <SearchBar />
-
-                        <VenueList />
+                    <VenueList />
                 </div>
             </div>  
         )
