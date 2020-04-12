@@ -10,7 +10,7 @@ import * as geolocation from './redux/geolocation-redux'
 import './app.css'
 
 class App extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchGeoLocation()
     }
 
@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <div className="foursquare-places-app">
                 <div className="foursquare-places-app__map-wrapper">
-                    <MapContainer />
+                    {this.props.hasUsersLocation && <MapContainer />}
                 </div>
 
                 <div className="foursquare-places-app__sidebar">
@@ -32,6 +32,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
     venues: state.venues.venues,
+    hasUsersLocation: Boolean(state.geolocation.usersLocation.lat),
     showingVenueList: state.venues.showingVenueList
 })
 
