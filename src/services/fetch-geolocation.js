@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const fetchGeoLocation = async () => {
     if (navigator.geolocation) {
         const { coords } = await getCurrentPosition()

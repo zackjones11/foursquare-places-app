@@ -10,10 +10,6 @@ import VenueListItem from '../venue-list-item/venue-list-item'
 import './venue-list.css'
 
 class VenueList extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     onItemClicked = (event) => {
         event.preventDefault()
         const clickedId = event.currentTarget.getAttribute('data-id')

@@ -10,10 +10,6 @@ import * as geolocation from './redux/geolocation-redux'
 import './app.css'
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-    }
-    
     componentWillMount() {
         this.props.fetchGeoLocation()
     }
