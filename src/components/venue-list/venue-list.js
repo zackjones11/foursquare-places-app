@@ -19,41 +19,41 @@ class VenueList extends Component {
         this.props.showVenuesList(false)
     }
 
-    getMoreVenues = (event) => {
+    getMoreVenues = () => {
+        if (this.props.hasNoMoreResults) {
+            return;
+        }
+
         const paginationOffset =  20 * (this.props.pageNum - 1)
         this.props.fetchVenues({...this.props.usersLocation, query: this.props.searchQuery, incrementPageNum: true, paginationOffset})
     }
 
     render() {
-        const loading = (
-            <p className="c-venue-list__message">Loading...</p>
-        )
-
-        const spinner = <Spinner />
-        const waypoint = <Waypoint onEnter={this.getMoreVenues} />
-
-        const dropdown = (
-            <span className="c-venue-list__dropdown">
-                {(this.props.venues.length > 0) ? (
-                    <ul className="c-venue-list__ul">
-                        {this.props.venues.map((v, key) =>
-                            <VenueListItem
-                                key={key} 
-                                venue={v.venue}
-                                onClick={this.onItemClicked} />
-                        )}
-                    </ul>
-                ) : (
-                    <p className="c-venue-list__message">No venues found</p>
-                )}
-
-                {(this.props.isFetching === true && this.props.venues.length > 0) ? spinner : waypoint }
-            </span>
-        )
-
         return (
             <div className="c-venue-list g-dropshadow-box">
-                {(this.props.isFetching && this.props.venues.length === 0) ? loading : dropdown }
+                <span className="c-venue-list__dropdown">
+                    {(this.props.venues) && (
+                        <ul className="c-venue-list__ul">
+                            {this.props.venues.map((v, key) =>
+                                <VenueListItem
+                                    key={key} 
+                                    venue={v.venue}
+                                    onClick={this.onItemClicked} />
+                            )}
+                        </ul>
+                    )}
+
+                    <p className="c-venue-list__message">
+                        {this.props.isFetching && !this.props.venues.length && 'Loading...'}
+                        {this.props.hasFetchedVenues && !this.props.venues.length && 'No venues found'}
+                        {this.props.hasNoMoreResults && 'No more venues found'}
+                    </p>
+
+                    {(this.props.isFetching && this.props.venues.length && !this.props.hasNoMoreResults) ?
+                        <Spinner /> : 
+                        <Waypoint onEnter={this.getMoreVenues} /> 
+                    }
+                </span>
             </div>
         )
     }
@@ -64,6 +64,7 @@ const mapStateToProps = state => ({
     pageNum: state.venues.pageNum,
     searchQuery: state.venues.searchQuery,
     isFetching: state.venues.isFetchingVenues,
+    hasNoMoreResults: state.venues.hasNoMoreResults,
     usersLocation: state.geolocation.usersLocation
 })
 

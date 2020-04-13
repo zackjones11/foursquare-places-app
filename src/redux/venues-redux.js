@@ -4,6 +4,7 @@ export const FETCH_VENUES = 'FETCH_VENUES'
 export const FETCH_VENUES_REQUEST = 'FETCH_VENUES_REQUEST'
 export const FETCH_VENUES_SUCCESS = 'FETCH_VENUES_SUCCESS'
 export const FETCH_VENUES_FAILURE = 'FETCH_VENUES_FAILURE'
+export const FETCH_VENUES_NO_RESULTS = 'FETCH_VENUES_NO_RESULTS';
 
 export const SEARCH_BUTTON_CLICKED = 'SEARCH_BUTTON_CLICKED'
 
@@ -14,6 +15,7 @@ export const SHOW_VENUE_LIST = 'SHOW_VENUE_LIST'
 export const INITIAL_STATE = {
     isFetchingVenues: false,
     hasFetchedVenues: null,
+    hasNoMoreResults: false,
     venues: [],
     pageNum: 1,
     searchQuery: '',
@@ -84,15 +86,10 @@ const showingVenueList = (state = INITIAL_STATE.showingVenueList, action = {}) =
 const venues = (state = INITIAL_STATE.venues, action = {}) => {
     switch (action.type) {
         case FETCH_VENUES_SUCCESS: {
-            const recommended = action.payload.venues.filter((group) =>
-                group.name === 'recommended')
-        
-            const venues = recommended[0].items
-
             if (action.payload.incrementPageNum)
-                return [ ...state, ...venues ]
+                return [ ...state, ...action.payload.venues ]
             else
-                return venues
+                return action.payload.venues
         }
         
         case SEARCH_BUTTON_CLICKED:
@@ -103,6 +100,19 @@ const venues = (state = INITIAL_STATE.venues, action = {}) => {
             return state
     }
 } 
+
+const hasNoMoreResults = (state = INITIAL_STATE.hasNoMoreResults, action = {}) => {
+    switch (action.type) {
+        case SEARCH_BUTTON_CLICKED:
+            return false
+
+        case FETCH_VENUES_NO_RESULTS:
+            return true;
+
+        default:
+            return state
+    }
+}
 
 const pageNum = (state = INITIAL_STATE.pageNum, action = {}) => {
     switch (action.type) {
@@ -169,6 +179,7 @@ const error = (state = INITIAL_STATE.error, action = {}) => {
 export default combineReducers({
     isFetchingVenues,
     hasFetchedVenues,
+    hasNoMoreResults,
     showingVenueList,
     venues,
     searchQuery,
