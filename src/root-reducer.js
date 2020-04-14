@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from "redux";
 
-import venues from './redux/venues-redux'
-import geolocation from './redux/geolocation-redux'
+import venues from "./redux/venues-redux";
+import geolocation from "./redux/geolocation-redux";
 
 export default combineReducers({
-    venues,
-    geolocation
-})
+  venues,
+  geolocation,
+});

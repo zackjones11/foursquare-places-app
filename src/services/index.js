@@ -1,2 +1,2 @@
-export { fetchVenues } from './fetch-venues'
-export { fetchGeoLocation } from './fetch-geolocation'
+export { fetchVenues } from "./fetch-venues";
+export { fetchGeoLocation } from "./fetch-geolocation";

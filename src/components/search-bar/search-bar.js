@@ -1,64 +1,66 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
-import * as venue from '../../redux/venues-redux'
+import * as venue from "../../redux/venues-redux";
 
-import './search-bar.css'
+import "./search-bar.css";
 
 class SearchBar extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { query: '' }
+  constructor(props) {
+    super(props);
+    this.state = { query: "" };
+  }
+
+  onSearch = (event) => {
+    event.preventDefault();
+
+    const query = this.state.query;
+    this.props.searchButtonClicked({ query });
+    this.props.fetchVenues({ ...this.props.usersLocation, query });
+    this.props.showVenuesList(true);
+  };
+
+  onChange = (event) => {
+    const value = event.target.value;
+    this.setState({ query: value });
+  };
+
+  render() {
+    let placeholder = "Getting location...";
+
+    if (this.props.hasUsersLocation) {
+      placeholder = "What kind of venue?";
     }
 
-    onSearch = (event) => {
-        event.preventDefault()
-        
-        const query = this.state.query
-        this.props.searchButtonClicked({query})
-        this.props.fetchVenues({...this.props.usersLocation, query})
-        this.props.showVenuesList(true)
-    }
+    return (
+      <div className="c-search-bar">
+        <form onSubmit={this.onSearch} className="c-search-bar__form">
+          <input
+            onChange={this.onChange}
+            placeholder={placeholder}
+            className="c-search-bar__input g-dropshadow-box"
+          />
 
-    onChange = (event) => {
-        const value = event.target.value
-        this.setState({ query: value })
-    }
-
-    render() {
-        let placeholder = 'Getting location...'
-    
-        if (this.props.hasUsersLocation) {
-            placeholder = 'What kind of venue?'
-        }
-    
-        return (
-            <div className="c-search-bar">
-                <form onSubmit={this.onSearch} className="c-search-bar__form">
-                    <input 
-                        onChange={this.onChange} 
-                        placeholder={placeholder} 
-                        className="c-search-bar__input g-dropshadow-box" />
-    
-                    {this.props.hasUsersLocation ? (
-                        <button type="submit"
-                            className="c-search-bar__submit">Go</button>
-                    ) : null}
-                </form>
-            </div>
-        )
-    }
+          {this.props.hasUsersLocation ? (
+            <button type="submit" className="c-search-bar__submit">
+              Go
+            </button>
+          ) : null}
+        </form>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = state => ({
-    usersLocation: state.geolocation.usersLocation,
-    hasUsersLocation: Boolean(state.geolocation.usersLocation.lat)
-})
+const mapStateToProps = (state) => ({
+  usersLocation: state.geolocation.usersLocation,
+  hasUsersLocation: Boolean(state.geolocation.usersLocation.lat),
+});
 
 const mapDispatchToProps = {
-    fetchVenues: venue.fetchVenues,
-    searchButtonClicked: venue.searchButtonClicked,
-    showVenuesList: venue.showVenuesList
-}
+  fetchVenues: venue.fetchVenues,
+  searchButtonClicked: venue.searchButtonClicked,
+  showVenuesList: venue.showVenuesList,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

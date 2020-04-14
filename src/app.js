@@ -1,43 +1,43 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import SearchBar from './components/search-bar/search-bar'
-import MapContainer from './components/map/map-container'
-import VenueList from './components/venue-list/venue-list'
+import SearchBar from "./components/search-bar/search-bar";
+import MapContainer from "./components/map/map-container";
+import VenueList from "./components/venue-list/venue-list";
 
-import * as geolocation from './redux/geolocation-redux'
+import * as geolocation from "./redux/geolocation-redux";
 
-import './app.css'
+import "./app.css";
 
 class App extends Component {
-    componentDidMount() {
-        this.props.fetchGeoLocation()
-    }
+  componentDidMount() {
+    this.props.fetchGeoLocation();
+  }
 
-    render() {
-        return (
-            <div className="foursquare-places-app">
-                <div className="foursquare-places-app__map-wrapper">
-                    {this.props.hasUsersLocation && <MapContainer />}
-                </div>
+  render() {
+    return (
+      <div className="foursquare-places-app">
+        <div className="foursquare-places-app__map-wrapper">
+          {this.props.hasUsersLocation && <MapContainer />}
+        </div>
 
-                <div className="foursquare-places-app__sidebar">
-                    <SearchBar />
-                    {this.props.showingVenueList && <VenueList />}
-                </div>
-            </div>
-        )
-    }
+        <div className="foursquare-places-app__sidebar">
+          <SearchBar />
+          {this.props.showingVenueList && <VenueList />}
+        </div>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = state => ({
-    venues: state.venues.venues,
-    hasUsersLocation: Boolean(state.geolocation.usersLocation.lat),
-    showingVenueList: state.venues.showingVenueList
-})
+const mapStateToProps = (state) => ({
+  venues: state.venues.venues,
+  hasUsersLocation: Boolean(state.geolocation.usersLocation.lat),
+  showingVenueList: state.venues.showingVenueList,
+});
 
 const mapDispatchToProps = {
-    fetchGeoLocation: geolocation.fetchGeoLocation
-}
+  fetchGeoLocation: geolocation.fetchGeoLocation,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);

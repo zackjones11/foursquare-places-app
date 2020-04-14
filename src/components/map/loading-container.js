@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import './loading-container.css'
+import "./loading-container.css";
 
-const LoadingContainer = (props) => (
-    <div className="loading-container">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-)
+const LoadingContainer = () => (
+  <div className="loading-container">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+);
 
-export default LoadingContainer
+export default LoadingContainer;

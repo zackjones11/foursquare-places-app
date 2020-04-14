@@ -1,17 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
 
-import ConnectedComponent from './map-container'
+import ConnectedComponent from "./map-container";
 
-const MapContainer = ConnectedComponent.WrappedComponent
+const MapContainer = ConnectedComponent.WrappedComponent;
 
-const coords = {lat: '51.507351', long: '-0.127758'}
+const coords = { lat: "51.507351", long: "-0.127758" };
 
-it('renders without crashing', () => {
-    const div = document.createElement('div')
+it("renders without crashing", () => {
+  const div = document.createElement("div");
 
-    ReactDOM.render(<MapContainer 
-            venueLocation={coords} 
-            usersLocation={coords} />, div)
-    ReactDOM.unmountComponentAtNode(div)
-})
+  ReactDOM.render(
+    <MapContainer venueLocation={coords} usersLocation={coords} />,
+    div
+  );
+  ReactDOM.unmountComponentAtNode(div);
+});
