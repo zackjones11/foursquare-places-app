@@ -18,7 +18,9 @@ describe('fetchVenues saga', () => {
                     {
                         type: "Recommended Places",
                         name: "recommended",
-                        items: [{}]
+                        items: [{
+                            id: 1
+                        }]
                     }
                 ]
             }
@@ -35,7 +37,8 @@ describe('fetchVenues saga', () => {
         saga.next().put({ type: redux.FETCH_VENUES_REQUEST, payload: { incrementPageNum: false } })
         saga.next().call(services.fetchVenues, data)
         saga.next(response).put({ type: redux.FETCH_VENUES_SUCCESS, payload: {
-            venues: response.data.response.groups, incrementPageNum: false
+            venues: response.data.response.groups[0].items,
+            incrementPageNum: false
         } })
         saga.next().isDone()
     })
