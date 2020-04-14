@@ -19,6 +19,7 @@
   },
   "parser": "babel-eslint",
   "rules": {
+    "react/display-name": [0],
     "react/prop-types": [0],
     "prefer-arrow-callback": ["error"],
     "space-before-function-paren": [
