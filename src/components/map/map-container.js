@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import LoadingContainer from "./loading-container";
+import Spinner from "../spinner/spinner";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 import { GOOGLE_MAPS_API_KEY } from "../../constants/google-maps-api";
@@ -52,11 +52,27 @@ class MapContainer extends PureComponent {
   }
 }
 
+const LoadingContainer = () => (
+  <Spinner
+    style={{
+      position: "absolute",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: "auto",
+    }}
+  />
+);
+
 const mapStateToProps = (state) => ({
   usersLocation: state.geolocation.usersLocation,
   venueLocation: state.venues.selectedVenue.location,
 });
 
 export default connect(mapStateToProps)(
-  GoogleApiWrapper({ apiKey: GOOGLE_MAPS_API_KEY, LoadingContainer })(MapContainer)
+  GoogleApiWrapper({
+    apiKey: GOOGLE_MAPS_API_KEY,
+    LoadingContainer,
+  })(MapContainer)
 );
