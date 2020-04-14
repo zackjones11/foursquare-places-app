@@ -1,6 +1,6 @@
 export const fetchGeoLocation = async () => {
     if (navigator.geolocation) {
-        const { coords } = await getCurrentPosition()
+        const { coords } = await getCurrentPosition({maximumAge: Infinity, timeout:60000, enableHighAccuracy: true})
         return {data: coords}
     } else {
         const error = 'We cannot get your current location.'
