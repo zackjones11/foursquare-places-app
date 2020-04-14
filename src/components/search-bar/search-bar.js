@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import * as venue from "../../redux/venues-redux";
 
-import "./search-bar.css";
+import styles from "./search-bar.module.css";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -33,16 +32,16 @@ class SearchBar extends React.Component {
     }
 
     return (
-      <div className="c-search-bar">
-        <form onSubmit={this.onSearch} className="c-search-bar__form">
+      <div className={styles.searchBar}>
+        <form onSubmit={this.onSearch}>
           <input
             onChange={this.onChange}
             placeholder={placeholder}
-            className="c-search-bar__input g-dropshadow-box"
+            className={styles.input}
           />
 
           {this.props.hasUsersLocation ? (
-            <button type="submit" className="c-search-bar__submit">
+            <button type="submit" className={styles.submit}>
               Go
             </button>
           ) : null}

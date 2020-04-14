@@ -1,4 +1,4 @@
-.c-spinner {
+.spinner {
     display: inline-block;
     position: relative;
     vertical-align: middle;
@@ -6,13 +6,13 @@
     height: 38px;
 }
 
-.c-spinner--center {
+.spinnerCenter {
     display: block;
     margin: auto;
     margin-bottom: 10px;
 }
 
-.c-spinner div {
+.spinnerInner {
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -25,15 +25,15 @@
     border-color: #6c3072 transparent transparent transparent;
 }
 
-.c-spinner div:nth-child(1) {
+.spinnerInner:nth-child(1) {
     animation-delay: -0.45s;
 }
 
-.c-spinner div:nth-child(2) {
+.spinnerInner:nth-child(2) {
     animation-delay: -0.3s;
 }
 
-.c-spinner div:nth-child(3) {
+.spinnerInner:nth-child(3) {
     animation-delay: -0.15s;
 }
 

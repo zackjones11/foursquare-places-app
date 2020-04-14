@@ -7,7 +7,7 @@ import * as venues from "../../redux/venues-redux";
 import Spinner from "../spinner/spinner";
 import VenueListItem from "../venue-list-item/venue-list-item";
 
-import "./venue-list.css";
+import styles from "./venue-list.module.css";
 
 class VenueList extends Component {
   onItemClicked = (event) => {
@@ -35,36 +35,32 @@ class VenueList extends Component {
 
   render() {
     return (
-      <div className="c-venue-list g-dropshadow-box">
-        <span className="c-venue-list__dropdown">
-          {this.props.venues && (
-            <ul className="c-venue-list__ul">
-              {this.props.venues.map((v, key) => (
-                <VenueListItem
-                  key={key}
-                  venue={v.venue}
-                  onClick={this.onItemClicked}
-                />
-              ))}
-            </ul>
-          )}
-
-          <p className="c-venue-list__message">
-            {this.props.isFetching && !this.props.venues.length && "Loading..."}
-            {this.props.hasFetchedVenues &&
-              !this.props.venues.length &&
-              "No venues found"}
-            {this.props.hasNoMoreResults && "No more venues found"}
-          </p>
-
-          {this.props.isFetching &&
-          this.props.venues.length &&
-          !this.props.hasNoMoreResults ? (
-            <Spinner />
-          ) : (
-            <Waypoint onEnter={this.getMoreVenues} />
-          )}
-        </span>
+      <div className={styles.wrap}>
+        {this.props.venues && (
+          <ul className={styles.venueList}>
+            {this.props.venues.map((v, key) => (
+              <VenueListItem
+                key={key}
+                venue={v.venue}
+                onClick={this.onItemClicked}
+              />
+            ))}
+          </ul>
+        )}
+        <p className={styles.message}>
+          {this.props.isFetching && !this.props.venues.length && "Loading..."}
+          {this.props.hasFetchedVenues &&
+            !this.props.venues.length &&
+            "No venues found"}
+          {this.props.hasNoMoreResults && "No more venues found"}
+        </p>
+        {this.props.isFetching &&
+        this.props.venues.length &&
+        !this.props.hasNoMoreResults ? (
+          <Spinner />
+        ) : (
+          <Waypoint onEnter={this.getMoreVenues} />
+        )}
       </div>
     );
   }

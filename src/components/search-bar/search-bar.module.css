@@ -1,9 +1,11 @@
-.c-search-bar {
+.searchBar {
     position: relative;
     margin-top: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+    border-radius: 3px;
 }
 
-.c-search-bar__input {
+.input {
     height: 45px;
     width: 100%;
     border: none;
@@ -11,11 +13,11 @@
     padding-right: 59px;
 }
 
-.c-search-bar__input:focus, .c-search-bar__input:active {
+.input:focus, .input:active {
     outline: 0;
 }
 
-.c-search-bar__submit {
+.submit {
     border: none;
     background: transparent;
     font-weight: 800;
@@ -36,10 +38,10 @@
     cursor: pointer;
 }
 
-.c-search-bar__submit:hover {
+.submit:hover {
     background-color: #f3f3f333;
 }
 
-.c-search-bar__submit:focus, .c-search-bar__submit:active {
+.submit:focus, .submit:active {
     outline: 0;
 }

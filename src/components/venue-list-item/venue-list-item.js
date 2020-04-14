@@ -1,15 +1,13 @@
 import React from "react";
-
-import "./venue-list-item.css";
+import styles from "./venue-list-item.module.css";
 
 const VenueListItem = ({ venue, onClick }) => {
   const address = venue.location.formattedAddress.join(", ");
 
   return (
-    <li data-id={venue.id} className="c-venue-list-item" onClick={onClick}>
-      <div className="c-venue-list-item__name">{venue.name}</div>
-
-      <div className="c-venue-list-item__address">{address}</div>
+    <li data-id={venue.id} className={styles.listItem} onClick={onClick}>
+      <div className={styles.name}>{venue.name}</div>
+      <div className={styles.address}>{address}</div>
     </li>
   );
 };

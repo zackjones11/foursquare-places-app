@@ -1,13 +1,13 @@
 import React from "react";
-
-import "./spinner.css";
+import classNames from "classnames";
+import styles from "./spinner.module.css";
 
 const Spinner = () => (
-  <div className="c-spinner c-spinner--center">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+  <div className={classNames([styles.spinner, styles.spinnerCenter])}>
+    <div className={styles.spinnerInner}></div>
+    <div className={styles.spinnerInner}></div>
+    <div className={styles.spinnerInner}></div>
+    <div className={styles.spinnerInner}></div>
   </div>
 );
 

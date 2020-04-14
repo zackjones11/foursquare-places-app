@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import styles from "./venue-list-item.module.css";
 import VenueListItem from "./venue-list-item";
 
 describe("VenueListItem", () => {
@@ -20,8 +20,8 @@ describe("VenueListItem", () => {
 
   it("should display name and address", () => {
     const wrapper = shallow(<VenueListItem venue={venue} />);
-    const name = wrapper.find(".c-venue-list-item__name");
-    const address = wrapper.find(".c-venue-list-item__address");
+    const name = wrapper.find(`.${styles.name}`);
+    const address = wrapper.find(`.${styles.address}`);
 
     expect(name.length).toBe(1);
     expect(name.text()).toBe("test name");

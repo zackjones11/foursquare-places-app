@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
 import ConnectedComponent from "./search-bar";
 
 const SearchBar = ConnectedComponent.WrappedComponent;
@@ -33,12 +32,12 @@ it("should not have a submit button when hasUsersLocation is false", () => {
   const wrapper = shallow(
     <SearchBar fetchVenues={() => {}} hasUsersLocation={false} />
   );
-  expect(wrapper.find(".c-search-bar__submit")).toHaveLength(0);
+  expect(wrapper.find(`button[type="submit"]`)).toHaveLength(0);
 });
 
 it("should have a submit button when hasUsersLocation is true", () => {
   const wrapper = shallow(
     <SearchBar fetchVenues={() => {}} hasUsersLocation={true} />
   );
-  expect(wrapper.find(".c-search-bar__submit")).toHaveLength(1);
+  expect(wrapper.find(`button[type="submit"]`)).toHaveLength(1);
 });

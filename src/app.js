@@ -7,7 +7,7 @@ import VenueList from "./components/venue-list/venue-list";
 
 import * as geolocation from "./redux/geolocation-redux";
 
-import "./app.css";
+import styles from "./app.module.css";
 
 class App extends Component {
   componentDidMount() {
@@ -16,12 +16,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="foursquare-places-app">
-        <div className="foursquare-places-app__map-wrapper">
-          {this.props.hasUsersLocation && <MapContainer />}
-        </div>
+      <div className={styles.container}>
+        <div>{this.props.hasUsersLocation && <MapContainer />}</div>
 
-        <div className="foursquare-places-app__sidebar">
+        <div className={styles.sidebar}>
           <SearchBar />
           {this.props.showingVenueList && <VenueList />}
         </div>

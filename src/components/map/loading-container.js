@@ -1,13 +1,13 @@
 import React from "react";
 
-import "./loading-container.css";
+import styles from "./loading-container.module.css";
 
 const LoadingContainer = () => (
-  <div className="loading-container">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+  <div className={styles.loadingContainer}>
+    <div className={styles.loadingContainerInner}></div>
+    <div className={styles.loadingContainerInner}></div>
+    <div className={styles.loadingContainerInner}></div>
+    <div className={styles.loadingContainerInner}></div>
   </div>
 );
 
