@@ -28,16 +28,13 @@ describe("venues redux", () => {
         const state = { ...INITIAL_STATE, isFetchingVenues: true };
         const { isFetchingVenues } = reducer(state, {
           type: redux.FETCH_VENUES_SUCCESS,
-          payload: [
-            {
-              name: "recommended",
-              items: [
-                {
-                  name: "place name",
-                },
-              ],
-            },
-          ],
+          payload: {
+            venues: [
+              {
+                name: "place name",
+              },
+            ],
+          },
         });
 
         expect(isFetchingVenues).toEqual(false);
@@ -78,16 +75,13 @@ describe("venues redux", () => {
         const state = { ...INITIAL_STATE, hasFetchedVenues: true };
         const { hasFetchedVenues } = reducer(state, {
           type: redux.FETCH_VENUES_SUCCESS,
-          payload: [
-            {
-              name: "recommended",
-              items: [
-                {
-                  name: "place name",
-                },
-              ],
-            },
-          ],
+          payload: {
+            venues: [
+              {
+                name: "place name",
+              },
+            ],
+          },
         });
 
         expect(hasFetchedVenues).toEqual(true);
@@ -128,16 +122,13 @@ describe("venues redux", () => {
         const state = { ...INITIAL_STATE, venues: true };
         const { venues } = reducer(state, {
           type: redux.FETCH_VENUES_SUCCESS,
-          payload: [
-            {
-              name: "recommended",
-              items: [
-                {
-                  name: "place name",
-                },
-              ],
-            },
-          ],
+          payload: {
+            venues: [
+              {
+                name: "place name",
+              },
+            ],
+          },
         });
 
         expect(venues).toEqual([{ name: "place name" }]);
@@ -168,21 +159,19 @@ describe("venues redux", () => {
       it(`${redux.SELECT_VENUE} action type should set payload`, () => {
         const state = {
           ...INITIAL_STATE,
-          selectedVenue: { location: { lat: "", long: "" } },
+          selectedVenue: { location: { lat: "", lng: "" } },
         };
         const { selectedVenue } = reducer(state, {
           type: redux.SELECT_VENUE,
           payload: {
-            venue: {
-              location: {
-                lat: "111",
-                lng: "222",
-              },
+            location: {
+              lat: "111",
+              lng: "222",
             },
           },
         });
 
-        expect(selectedVenue).toEqual({ location: { lat: "111", long: "222" } });
+        expect(selectedVenue).toEqual({ location: { lat: "111", lng: "222" } });
       });
     });
 
@@ -232,16 +221,13 @@ describe("venues redux", () => {
         const state = { ...INITIAL_STATE, error: true };
         const { error } = reducer(state, {
           type: redux.FETCH_VENUES_SUCCESS,
-          payload: [
-            {
-              name: "recommended",
-              items: [
-                {
-                  name: "place name",
-                },
-              ],
-            },
-          ],
+          payload: {
+            venues: [
+              {
+                name: "place name",
+              },
+            ],
+          },
         });
 
         expect(error).toEqual(null);
