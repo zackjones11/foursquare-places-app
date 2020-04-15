@@ -1,11 +1,13 @@
 export const fetchGeoLocation = async () => {
   if (navigator.geolocation) {
-    const { coords } = await getCurrentPosition({
+    const {
+      coords: { latitude, longitude },
+    } = await getCurrentPosition({
       maximumAge: Infinity,
       timeout: 60000,
       enableHighAccuracy: true,
     });
-    return { data: coords };
+    return { data: { lat: latitude, lng: longitude } };
   } else {
     const error = "We cannot get your current location.";
     console.log(error);

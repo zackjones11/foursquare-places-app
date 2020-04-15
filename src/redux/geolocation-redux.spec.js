@@ -29,8 +29,8 @@ describe("geolocation redux", () => {
         const { isFetchingLocation } = reducer(state, {
           type: redux.FETCH_GEO_LOCATION_SUCCESS,
           payload: {
-            latitude: "234",
-            longitude: "121",
+            lat: "234",
+            lng: "121",
           },
         });
 
@@ -73,8 +73,8 @@ describe("geolocation redux", () => {
         const { hasFetchedLocation } = reducer(state, {
           type: redux.FETCH_GEO_LOCATION_SUCCESS,
           payload: {
-            latitude: "234",
-            longitude: "121",
+            lat: "234",
+            lng: "121",
           },
         });
 
@@ -117,12 +117,12 @@ describe("geolocation redux", () => {
         const { usersLocation } = reducer(state, {
           type: redux.FETCH_GEO_LOCATION_SUCCESS,
           payload: {
-            latitude: "234",
-            longitude: "121",
+            lat: "234",
+            lng: "121",
           },
         });
 
-        expect(usersLocation).toEqual({ lat: "234", long: "121" });
+        expect(usersLocation).toEqual({ lat: "234", lng: "121" });
       });
 
       it(`${redux.FETCH_GEO_LOCATION_FAILURE} action type should set usersLocation to empty obj`, () => {

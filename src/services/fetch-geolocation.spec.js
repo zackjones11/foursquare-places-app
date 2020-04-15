@@ -7,8 +7,8 @@ describe("fetch geolocation service", () => {
 
     expect(location).toEqual({
       data: {
-        latitude: "111",
-        longitude: "222",
+        lat: "111",
+        lng: "222",
       },
     });
 

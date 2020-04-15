@@ -8,7 +8,7 @@ describe("fetchVenues saga", () => {
   let saga;
   const data = {
     lat: "51.507877",
-    long: "-0.087732",
+    lng: "-0.087732",
   };
 
   const response = {

@@ -59,10 +59,7 @@ const hasFetchedLocation = (
 const usersLocation = (state = INITIAL_STATE.usersLocation, action = {}) => {
   switch (action.type) {
     case FETCH_GEO_LOCATION_SUCCESS:
-      return {
-        lat: action.payload.latitude,
-        long: action.payload.longitude,
-      };
+      return action.payload;
 
     case FETCH_GEO_LOCATION_REQUEST:
     case FETCH_GEO_LOCATION_FAILURE:

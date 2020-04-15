@@ -72,9 +72,9 @@ describe("explore venues foursquare api service", () => {
     );
 
     const lat = "51.507877";
-    const long = "-0.087732";
+    const lng = "-0.087732";
 
-    const venues = await fetchVenues({ lat, long });
+    const venues = await fetchVenues({ lat, lng });
 
     expect(venues).toEqual({
       data: {

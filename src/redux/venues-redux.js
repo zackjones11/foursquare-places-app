@@ -140,12 +140,7 @@ const pageNum = (state = INITIAL_STATE.pageNum, action = {}) => {
 const selectedVenue = (state = INITIAL_STATE.selectedVenue, action = {}) => {
   switch (action.type) {
     case SELECT_VENUE: {
-      return {
-        location: {
-          lat: action.payload.location.lat,
-          long: action.payload.location.lng,
-        },
-      };
+      return action.payload;
     }
 
     default:

@@ -5,7 +5,7 @@ import ConnectedComponent from "./map-container";
 
 const MapContainer = ConnectedComponent.WrappedComponent;
 
-const coords = { lat: "51.507351", long: "-0.127758" };
+const coords = { lat: "51.507351", lng: "-0.127758" };
 
 it("renders without crashing", () => {
   const div = document.createElement("div");

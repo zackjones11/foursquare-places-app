@@ -8,8 +8,8 @@ describe("fetchGeoLocation saga", () => {
   let saga;
   const response = {
     data: {
-      latitude: "234",
-      longitude: "121",
+      lat: "234",
+      lng: "121",
     },
   };
 
