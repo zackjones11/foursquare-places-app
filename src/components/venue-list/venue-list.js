@@ -20,19 +20,15 @@ const VenueList = (props) => {
     searchQuery: query,
   } = props;
 
-  const onItemClicked = (venue) => {
+  const handleItemClicked = (venue) => {
     selectVenue(venue);
     showVenuesList(false);
   };
 
   const getMoreVenues = () => {
-    console.log("hasNoMoreResults", hasNoMoreResults);
-
     if (hasNoMoreResults) {
       return;
     }
-
-    console.log("hasNoMoreResults", hasNoMoreResults);
 
     const paginationOffset = 20 * (pageNum - 1);
     fetchVenues({
@@ -48,7 +44,7 @@ const VenueList = (props) => {
       {venues && (
         <ul className={styles.venueList}>
           {venues.map((v, key) => (
-            <VenueListItem key={key} venue={v.venue} onClick={onItemClicked} />
+            <VenueListItem key={key} venue={v.venue} onClick={handleItemClicked} />
           ))}
         </ul>
       )}
