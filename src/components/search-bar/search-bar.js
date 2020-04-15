@@ -13,22 +13,22 @@ const SearchBar = (props) => {
   } = props;
   const [query, setQuery] = useState();
 
-  const onSearch = (event) => {
+  const handleSearch = (event) => {
     event.preventDefault();
     searchButtonClicked({ query });
     fetchVenues({ ...usersLocation, query });
     showVenuesList(true);
   };
 
-  const onChange = (event) => {
+  const handleChange = (event) => {
     setQuery(event.target.value);
   };
 
   return (
     <div className={styles.searchBar}>
-      <form onSubmit={onSearch}>
+      <form onSubmit={handleSearch}>
         <input
-          onChange={onChange}
+          onChange={handleChange}
           placeholder={
             hasUsersLocation ? "What kind of venue?" : "Getting location..."
           }
