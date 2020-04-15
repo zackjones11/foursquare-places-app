@@ -142,8 +142,8 @@ const selectedVenue = (state = INITIAL_STATE.selectedVenue, action = {}) => {
     case SELECT_VENUE: {
       return {
         location: {
-          lat: action.payload.venue.location.lat,
-          long: action.payload.venue.location.lng,
+          lat: action.payload.location.lat,
+          long: action.payload.location.lng,
         },
       };
     }

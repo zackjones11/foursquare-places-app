@@ -1,70 +1,72 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Waypoint } from "react-waypoint";
-
 import * as venues from "../../redux/venues-redux";
-
 import Spinner from "../spinner/spinner";
 import VenueListItem from "../venue-list-item/venue-list-item";
-
 import styles from "./venue-list.module.css";
 
-class VenueList extends Component {
-  onItemClicked = (event) => {
-    event.preventDefault();
-    const clickedId = event.currentTarget.getAttribute("data-id");
-    const venue = this.props.venues.filter((v) => v.venue.id === clickedId);
+const VenueList = (props) => {
+  const {
+    venues,
+    hasNoMoreResults,
+    isFetching,
+    hasFetchedVenues,
+    selectVenue,
+    showVenuesList,
+    fetchVenues,
+    usersLocation,
+    pageNum,
+    searchQuery: query,
+  } = props;
 
-    this.props.selectVenue({ ...venue[0] });
-    this.props.showVenuesList(false);
+  const onItemClicked = (venue) => {
+    selectVenue(venue);
+    showVenuesList(false);
   };
 
-  getMoreVenues = () => {
-    if (this.props.hasNoMoreResults) {
+  const getMoreVenues = () => {
+    console.log("hasNoMoreResults", hasNoMoreResults);
+
+    if (hasNoMoreResults) {
       return;
     }
 
-    const paginationOffset = 20 * (this.props.pageNum - 1);
-    this.props.fetchVenues({
-      ...this.props.usersLocation,
-      query: this.props.searchQuery,
+    console.log("hasNoMoreResults", hasNoMoreResults);
+
+    const paginationOffset = 20 * (pageNum - 1);
+    fetchVenues({
+      ...usersLocation,
+      query,
       incrementPageNum: true,
       paginationOffset,
     });
   };
 
-  render() {
-    return (
-      <div className={styles.wrap}>
-        {this.props.venues && (
-          <ul className={styles.venueList}>
-            {this.props.venues.map((v, key) => (
-              <VenueListItem
-                key={key}
-                venue={v.venue}
-                onClick={this.onItemClicked}
-              />
-            ))}
-          </ul>
-        )}
-        <p className={styles.message}>
-          {this.props.isFetching && !this.props.venues.length && "Loading..."}
-          {this.props.hasFetchedVenues &&
-            !this.props.venues.length &&
-            "No venues found"}
-          {this.props.hasNoMoreResults && "No more venues found"}
-        </p>
-        {this.props.isFetching &&
-        this.props.venues.length &&
-        !this.props.hasNoMoreResults ? (
-          <Spinner />
-        ) : (
-          <Waypoint onEnter={this.getMoreVenues} />
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={styles.wrap}>
+      {venues && (
+        <ul className={styles.venueList}>
+          {venues.map((v, key) => (
+            <VenueListItem key={key} venue={v.venue} onClick={onItemClicked} />
+          ))}
+        </ul>
+      )}
+
+      {isFetching && venues.length && !hasNoMoreResults ? (
+        <Spinner />
+      ) : (
+        <Waypoint onEnter={getMoreVenues} />
+      )}
+
+      <p className={styles.message}>
+        {isFetching && !venues.length && "Loading..."}
+        {hasFetchedVenues && !venues.length && "No venues found"}
+        {hasNoMoreResults && "No more venues found"}
+      </p>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   venues: state.venues.venues,
