@@ -1,56 +1,49 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Spinner from "../spinner/spinner";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-
 import { GOOGLE_MAPS_API_KEY } from "../../constants/google-maps-api";
 
-class MapContainer extends PureComponent {
-  render() {
-    const style = {
-      width: "100%",
-      height: "100%",
-    };
+const MapContainer = (props) => {
+  const { google, usersLocation, venueLocation } = props;
 
-    const initialCenter = {
-      lat: this.props.usersLocation.lat,
-      lng: this.props.usersLocation.long,
-    };
+  const initialCenter = {
+    lat: usersLocation.lat,
+    lng: usersLocation.long,
+  };
 
-    const venueCenter = {
-      lat: this.props.venueLocation.lat,
-      lng: this.props.venueLocation.long,
-    };
+  const venueCenter = {
+    lat: venueLocation.lat,
+    lng: venueLocation.long,
+  };
 
-    let markerPosition = {};
-
-    if (venueCenter.lat !== null) {
-      markerPosition = {
-        lat: this.props.venueLocation.lat,
-        lng: this.props.venueLocation.long,
+  let markerPosition = venueCenter.lat
+    ? {
+        lat: venueLocation.lat,
+        lng: venueLocation.long,
+      }
+    : {
+        lat: usersLocation.lat,
+        lng: usersLocation.long,
       };
-    } else {
-      markerPosition = {
-        lat: this.props.usersLocation.lat,
-        lng: this.props.usersLocation.long,
-      };
-    }
 
-    return (
-      <Map
-        google={this.props.google}
-        zoom={15}
-        mapTypeControl={false}
-        fullscreenControl={false}
-        style={style}
-        initialCenter={initialCenter}
-        center={markerPosition}
-      >
-        <Marker position={markerPosition} />
-      </Map>
-    );
-  }
-}
+  return (
+    <Map
+      google={google}
+      zoom={15}
+      mapTypeControl={false}
+      fullscreenControl={false}
+      style={{
+        width: "100%",
+        height: "100%",
+      }}
+      initialCenter={initialCenter}
+      center={markerPosition}
+    >
+      <Marker position={markerPosition} />
+    </Map>
+  );
+};
 
 const LoadingContainer = () => (
   <Spinner
