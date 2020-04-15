@@ -1,55 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as venue from "../../redux/venues-redux";
-
 import styles from "./search-bar.module.css";
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { query: "" };
-  }
+const SearchBar = (props) => {
+  const {
+    hasUsersLocation,
+    searchButtonClicked,
+    fetchVenues,
+    showVenuesList,
+    usersLocation,
+  } = props;
+  const [query, setQuery] = useState();
 
-  onSearch = (event) => {
+  const onSearch = (event) => {
     event.preventDefault();
-
-    const query = this.state.query;
-    this.props.searchButtonClicked({ query });
-    this.props.fetchVenues({ ...this.props.usersLocation, query });
-    this.props.showVenuesList(true);
+    searchButtonClicked({ query });
+    fetchVenues({ ...usersLocation, query });
+    showVenuesList(true);
   };
 
-  onChange = (event) => {
-    const value = event.target.value;
-    this.setState({ query: value });
+  const onChange = (event) => {
+    setQuery(event.target.value);
   };
 
-  render() {
-    let placeholder = "Getting location...";
+  return (
+    <div className={styles.searchBar}>
+      <form onSubmit={onSearch}>
+        <input
+          onChange={onChange}
+          placeholder={
+            hasUsersLocation ? "What kind of venue?" : "Getting location..."
+          }
+          className={styles.input}
+        />
 
-    if (this.props.hasUsersLocation) {
-      placeholder = "What kind of venue?";
-    }
-
-    return (
-      <div className={styles.searchBar}>
-        <form onSubmit={this.onSearch}>
-          <input
-            onChange={this.onChange}
-            placeholder={placeholder}
-            className={styles.input}
-          />
-
-          {this.props.hasUsersLocation ? (
-            <button type="submit" className={styles.submit}>
-              Go
-            </button>
-          ) : null}
-        </form>
-      </div>
-    );
-  }
-}
+        {hasUsersLocation && (
+          <button type="submit" className={styles.submit}>
+            Go
+          </button>
+        )}
+      </form>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   usersLocation: state.geolocation.usersLocation,
