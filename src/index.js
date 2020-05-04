@@ -1,10 +1,8 @@
 import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
-
 import configureStore from "./configure-store";
-
-import App from "./app";
+import App from "./App";
 
 import "normalize.css";
 import "./index.css";
