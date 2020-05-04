@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./venue-list-item.module.css";
+import { styles } from "./";
 
 const VenueListItem = ({ venue, onClick }) => (
   <li className={styles.listItem} onClick={() => onClick(venue)}>

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import styles from "./venue-list-item.module.css";
-import VenueListItem from "./venue-list-item";
+import { VenueListItem, styles } from "./";
 
 describe("VenueListItem", () => {
   const venue = {
