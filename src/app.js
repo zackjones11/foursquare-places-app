@@ -4,7 +4,7 @@ import { SearchBar } from "./components/SearchBar";
 import { Map } from "./components/Map";
 import { VenueList } from "./components/VenueList";
 import * as geolocation from "./redux/geolocation-redux";
-import styles from "./app.module.css";
+import styles from "./App.module.css";
 
 const App = (props) => {
   const { hasUsersLocation, fetchGeoLocation, showingVenueList } = props;
