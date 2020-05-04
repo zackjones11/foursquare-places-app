@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import SearchBar from "./components/search-bar/search-bar";
+import { SearchBar } from "./components/SearchBar";
 import MapContainer from "./components/map/map-container";
 import { VenueList } from "./components/VenueList";
 import * as geolocation from "./redux/geolocation-redux";

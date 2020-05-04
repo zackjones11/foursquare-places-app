@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as venue from "../../redux/venues-redux";
-import styles from "./search-bar.module.css";
+import { styles } from "./";
 
 const SearchBar = (props) => {
   const {
