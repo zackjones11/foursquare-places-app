@@ -4,7 +4,7 @@ import { Spinner } from "../Spinner";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { GOOGLE_MAPS_API_KEY } from "../../constants/google-maps-api";
 
-const MapContainer = ({ usersLocation, venueLocation }) => {
+const Map = ({ usersLocation, venueLocation }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   });
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => ({
   venueLocation: state.venues.selectedVenue.location,
 });
 
-export default connect(mapStateToProps)(MapContainer);
+export default connect(mapStateToProps)(Map);

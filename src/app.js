@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { SearchBar } from "./components/SearchBar";
-import MapContainer from "./components/map/map-container";
+import { Map } from "./components/Map";
 import { VenueList } from "./components/VenueList";
 import * as geolocation from "./redux/geolocation-redux";
-
 import styles from "./app.module.css";
 
 const App = (props) => {
@@ -16,7 +15,7 @@ const App = (props) => {
 
   return (
     <div className={styles.container}>
-      <div>{hasUsersLocation && <MapContainer />}</div>
+      <div>{hasUsersLocation && <Map />}</div>
 
       <div className={styles.sidebar}>
         <SearchBar />
