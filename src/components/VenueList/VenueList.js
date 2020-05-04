@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Waypoint } from "react-waypoint";
 import * as venues from "../../redux/venues-redux";
-import Spinner from "../spinner/spinner";
+import { Spinner } from "../spinner";
 import { VenueListItem } from "../VenueListItem";
 import { styles } from "./";
 

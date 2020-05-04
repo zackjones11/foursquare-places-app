@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Spinner from "../spinner/spinner";
+import { Spinner } from "../spinner";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { GOOGLE_MAPS_API_KEY } from "../../constants/google-maps-api";
 

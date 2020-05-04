@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import styles from "./spinner.module.css";
+import { styles } from "./";
 
 const Spinner = ({ style, absolutePosition = false }) => (
   <div
