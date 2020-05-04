@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ConnectedComponent from "./search-bar";
+import ConnectedComponent from "./SearchBar";
 
 const SearchBar = ConnectedComponent.WrappedComponent;
 

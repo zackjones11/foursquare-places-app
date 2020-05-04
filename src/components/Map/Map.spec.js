@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import ConnectedComponent from "./map-container";
+import ConnectedComponent from "./Map";
 
 const MapContainer = ConnectedComponent.WrappedComponent;
 
