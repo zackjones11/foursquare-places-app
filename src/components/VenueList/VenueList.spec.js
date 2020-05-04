@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import styles from "./venue-list.module.css";
-import ConnectedComponent from "./venue-list";
+import { styles } from "./";
+import ConnectedComponent from "./VenueList";
 
 const VenueList = ConnectedComponent.WrappedComponent;
 
